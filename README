@@ -1,6 +1,23 @@
-This is your new Play 2.0 application
-=====================================
+Bitte diese Datei aktuell halten und alles ausführlich beschreiben (gegebenenfalls auch System-spezifische Hinweise, z.B. Unterschiede bei Pfad für Mac oder Windows)...
 
-This file will be packaged with your application, when using `play dist`.
+ACHTUNG: Bisher nur mit Mac und IntelliJ IDEA getestet.
 
-This file was modified by IntelliJ IDEA 11.1.1 for binding GitHub repository
+Installation:
+- Play 2.0 herunterladen, entpacken und PATH setzen
+- Gradle herunterladen, entpacken und PATH setzen
+- MongoDB herunterladen und entpacken
+- mit "mongod" den DB-Server starten
+- "gradle build" / "gradle dist" ausführen
+- "gradle idea" / "gradle eclipse" fügt die IDE Dateien hinzu => danach kann das Projekt in die IDE importiert werden
+  Achtung: diese Dateien nicht committen. Sie sind bei jedem unterschiedlich und müssen daher einmal auf jedem Rechner generiert werden
+- Play setzt intern auf sbt als build tool, daher ist die Integration von Play in Gradle etwas problematisch
+    (mehr Infos hier: http://stackoverflow.com/questions/10299815/how-to-integrate-play-framework-2-0-into-gradle-build-management-using-maven-dep/10307978#comment13282127_10307978)
+    Beispielsweise muss "gradle playCompile" ausgeführt werden, damit zusätzliche Dependencies (z.B. MongoDB) auch in Play (d.h. in /lib) verfügbar sind
+- "play run" startet die Anwendung
+- http://localhost:9000 im Browser zeigt die Anwendung
+
+
+TODOs
+- Was ist eigentlich mit Tests bei Play 2.0 - wo werden die im Dateisystem und im Build integriert?
+- Welche Scala Version wird eigentlich verwendet? Ich hab lokal mehrere? Kann man mit Play einfach die neueste verwenden? (2.9.2)
+- Welche Java Version wird verwendet? Hier wäre ein umstellen auf Java 7 schön => und dann natürlich die Sprachfeatures verwenden (sofern das bei soviel Scala sinnvoll ist???)
