@@ -7,7 +7,8 @@ apply plugin: 'idea'
 def findPlay20(){
   def pathEnvName = ['PATH', 'Path'].find{ System.getenv()[it] != null }
   for(path in System.getenv()[pathEnvName].split(File.pathSeparator)){
-    for(playExec in ['play.bat', 'play.sh', 'play']){
+    //for(playExec in ['play.sh', 'play.bat', 'play']){
+    for(playExec in ['play']){
       if(new File(path, playExec).exists()){
         project.ext.playHome = path
         project.ext.playExec = new File(path, playExec)
