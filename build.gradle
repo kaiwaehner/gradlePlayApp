@@ -4,10 +4,11 @@ apply plugin: 'scala'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
+
 def findPlay20(){
   def pathEnvName = ['PATH', 'Path'].find{ System.getenv()[it] != null }
   for(path in System.getenv()[pathEnvName].split(File.pathSeparator)){
-    //for(playExec in ['play.sh', 'play.bat', 'play']){
+    //for(playExec in ['play.sh', 'play.bat', 'play']){ // TODO Warum geht diese Zeile nicht? Auf Mac führt er dann play.bat aus, was natürlich nicht geht
     for(playExec in ['play']){
       if(new File(path, playExec).exists()){
         project.ext.playHome = path
@@ -32,7 +33,7 @@ repositories{
     layout 'pattern'
   }
 
-  // Maven Pubic Repository
+  // Maven Pubic Repository => for all "non-play dependencies" such as MongoDB or JUnit
   mavenCentral()
 
 }
@@ -52,7 +53,7 @@ dependencies{
   // User defined libraries (will be copied to lib/ before `play compile`)
   //compile 'group:name:0.1'
   compile 'org.mongodb:mongo-java-driver:1.3'
-  compile 'net.vz.mongodb.jackson:mongo-jackson-mapper:1.4.2' // beinhaltet auch den mongo-java-driver?!
+  compile 'net.vz.mongodb.jackson:mongo-jackson-mapper:1.4.2' // beinhaltet auch den mongo-java-driver => doppelt?!
 
   // Default Gradle Scala plugin settings below (see Scala plugin page for up-to-date info)
 
@@ -102,3 +103,10 @@ eclipse {
     plusConfigurations += configurations.provided
   }
 }
+
+
+// ##########################################
+// Remove after you have understood this:
+String java = "Java";
+System.out.println("This build Script is just Groovy Code - and therefore also 99% of " + java + "code is supported!")
+// ##########################################
